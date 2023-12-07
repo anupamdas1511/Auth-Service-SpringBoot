@@ -14,6 +14,7 @@ import com.auth.utils.RandomGenerator;
 import com.auth.utils.Validators;
 import io.jsonwebtoken.Jwts;
 import jakarta.mail.MessagingException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
@@ -23,15 +24,12 @@ import static com.auth.exceptions.ExceptionCodes.*;
 @Service
 public class AuthServiceImpl implements AuthService {
 
+    @Autowired
     private UserRepository userRepository;
+    @Autowired
     private OtpRepository otpRepository;
+    @Autowired
     private ResetPasswordRepository resetPasswordRepository;
-
-    public AuthServiceImpl(UserRepository userRepository, OtpRepository otpRepository, ResetPasswordRepository resetPasswordRepository) {
-        this.userRepository = userRepository;
-        this.otpRepository = otpRepository;
-        this.resetPasswordRepository = resetPasswordRepository;
-    }
 
     @Override
     public void signup(User user) throws Exception, MessagingException {
